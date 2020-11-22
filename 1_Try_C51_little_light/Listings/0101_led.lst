@@ -1,0 +1,47 @@
+C51 COMPILER V9.60.0.0   0101_LED                                                          11/22/2020 10:02:25 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE 0101_LED
+OBJECT MODULE PLACED IN .\Objects\0101_led.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE 0101_led.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\
+                    -0101_led.lst) TABS(2) OBJECT(.\Objects\0101_led.obj)
+
+line level    source
+
+   1          #include "REG52.H"
+   2          #define uint unsigned int
+   3          sbit led0=P2^0;
+   4          sbit led1=P2^1;
+   5          //延迟的毫秒数
+   6          void delay(uint time)
+   7          {
+   8   1        uint i,j;
+   9   1        for(i=0;i<time;i++)
+  10   1          for(j=0;j<110;j++);
+  11   1      }
+  12          
+  13          void main()
+  14          {
+  15   1        //init
+  16   1        led0=led1=1;
+  17   1      
+  18   1        led0=0;
+  19   1        delay(1000);
+  20   1        led0=1;
+  21   1        led1=0;
+  22   1        delay(1000);
+  23   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     52    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

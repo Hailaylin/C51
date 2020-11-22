@@ -1,0 +1,53 @@
+C51 COMPILER V9.60.0.0   0201_WATER_LIGHT                                                  11/22/2020 10:23:54 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE 0201_WATER_LIGHT
+OBJECT MODULE PLACED IN .\Objects\0201_water_light.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE 0201_water_light.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\L
+                    -istings\0201_water_light.lst) TABS(2) OBJECT(.\Objects\0201_water_light.obj)
+
+line level    source
+
+   1          /*
+   2          衔接UPRE的流水灯任务
+   3          
+   4          */
+   5          #include<REG52.H>
+   6          #include<INTRINS.H>
+   7          #define uint unsigned int
+   8          #define uchar unsigned char
+   9          //init light?不用？
+  10          
+  11          //延迟x毫秒数
+  12          void delay(uint x)
+  13          {
+  14   1          uint i,j;
+  15   1          for(i=x;i>0;i--)
+  16   1              for(j=110;j>0;j--);
+  17   1      }
+  18          
+  19          int main()
+  20          {
+  21   1          uchar aa;
+  22   1          aa=0xfe;
+  23   1          while(1)
+  24   1          {
+  25   2              P2=aa;
+  26   2              delay(1000);
+  27   2              aa=_crol_(aa,1);
+  28   2          }
+  29   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     55    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
