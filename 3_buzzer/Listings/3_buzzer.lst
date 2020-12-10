@@ -1,0 +1,58 @@
+C51 COMPILER V9.60.0.0   3_BUZZER                                                          12/09/2020 17:24:00 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE 3_BUZZER
+OBJECT MODULE PLACED IN .\Objects\3_buzzer.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE 3_buzzer.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\
+                    -3_buzzer.lst) TABS(2) OBJECT(.\Objects\3_buzzer.obj)
+
+line level    source
+
+   1          /**
+   2           * @file 3_buzzer.c
+   3           * @author HailayLin (hailay@qq.com)
+   4           * @brief 
+   5           * @version 0.1
+   6           * @date 2020-12-09
+   7           * 
+   8           * @copyright Copyright (c) 2020  Hailay.site & Xihe.ai
+   9           * 
+  10           */
+  11          
+  12          #include<REG52.H>
+  13          
+  14          typedef unsigned int    u16;
+  15          typedef unsigned char   u8;
+  16          
+  17          sbit beep=P1^5;
+  18          
+  19          //延迟x毫秒数
+  20          void delay(u16 x)
+  21          {
+  22   1          u16 i,j;
+  23   1          for(i=x;i>0;i--)
+  24   1              for(j=114;j>0;j--);
+  25   1      }
+  26          
+  27          int main(){
+  28   1          while (1)
+  29   1          {
+  30   2              beep=~beep;
+  31   2              delay(1);
+  32   2          }
+  33   1          
+  34   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     41    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   0201_WATER_LIGHT                                                  11/22/2020 10:23:54 PAGE 1   
+C51 COMPILER V9.60.0.0   0201_WATER_LIGHT                                                  12/09/2020 19:07:29 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE 0201_WATER_LIGHT
@@ -9,42 +9,216 @@ COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE 0201_water_light.c OPTIMIZE(8,SP
 line level    source
 
    1          /*
-   2          Ë°îÊé•UPREÁöÑÊµÅÊ∞¥ÁÅØ‰ªªÂä°
+   2          œŒΩ”UPREµƒ¡˜ÀÆµ∆»ŒŒÒ
    3          
    4          */
    5          #include<REG52.H>
    6          #include<INTRINS.H>
    7          #define uint unsigned int
    8          #define uchar unsigned char
-   9          //init light?‰∏çÁî®Ôºü
+   9          //init light?≤ª”√£ø
   10          
-  11          //Âª∂ËøüxÊØ´ÁßíÊï∞
+  11          //—”≥Ÿx∫¡√Î ˝
   12          void delay(uint x)
   13          {
   14   1          uint i,j;
   15   1          for(i=x;i>0;i--)
-  16   1              for(j=110;j>0;j--);
+  16   1              for(j=114;j>0;j--);
   17   1      }
-  18          
-  19          int main()
-  20          {
-  21   1          uchar aa;
-  22   1          aa=0xfe;
-  23   1          while(1)
-  24   1          {
-  25   2              P2=aa;
-  26   2              delay(1000);
-  27   2              aa=_crol_(aa,1);
-  28   2          }
-  29   1      }
+  18          //«Âø’µ∆+—” ±∫¡√Î ˝
+  19          void clear(uint time){
+  20   1          P2=0xff;
+  21   1          delay(time);
+  22   1      }
+  23          //¡¡µƒ∑ΩœÚ£¨l◊Û,r”“£ªŒª“∆∆ º÷µ;√ø¥ŒŒª“∆µƒº‰∏Ù ±º‰;Œª“∆¥Œ ˝
+  24          void move_direction(char direc,uchar a,uint time,int ci)
+  25          {
+  26   1          void delay(uint x);
+  27   1          void clear(uint time);
+  28   1          uint i;
+  29   1          for(i=0;i<ci;i++){
+  30   2              P2=a;           //∞—Œª“∆º∆À„∫Ûµƒ÷µΩª∏¯π‹Ω≈ µœ÷£¨≤ªº”=∞◊∏…
+  31   2              if(direc=='l') a=_crol_(a,1);
+  32   2              else a=_cror_(a,1);
+  33   2              delay(time);
+  34   2          }
+  35   1      }
+  36          //µ∆¥”÷–º‰µΩ¡Ω±ﬂk (¿©)£¨¥”¡Ω±ﬂµΩ÷–º‰s(Àı);—” ± ±º‰
+  37          void move_KuoSuo(char direc,uint time){
+  38   1          void delay(uint x);
+  39   1          void clear(uint time);
+  40   1          int i;              //unsigned int √ª∏∫ ˝£¨’˚µΩ∏∫ ˝æÕª·±®¥Ì≥ˆbug
+  41   1          uchar a[4]={0x18,0x24,0x42,0x81};//00011000 00100100 01000010 10000001
+  42   1          if(direc=='k'){
+  43   2              for(i=0;i<4;i++){
+  44   3                  P2=~a[i];
+  45   3                  delay(time);
+  46   3              }
+  47   2          }
+  48   1          else if(direc=='s'){
+  49   2              for(i=3;i>=0;i--){  //»Áπ˚ «i>=0æÕª·≥ˆŒ Ã‚£¨µ∆¬“…¡£¨“™“ª∏ˆ“ª∏ˆdebug≤≈––£¨∫Õ»°∑¥~ø…ƒ‹”–πÿœµ
+  50   3                  P2=~a[i];
+  51   3                  delay(time);
+  52   3              }
+  53   2          }
+  54   1          i=0;
+C51 COMPILER V9.60.0.0   0201_WATER_LIGHT                                                  12/09/2020 19:07:29 PAGE 2   
+
+  55   1          clear(2000);
+  56   1      }
+  57          
+  58          void all_light_off(int n )
+  59          {
+  60   1          void delay(uint x);
+  61   1          void clear(uint time);
+  62   1          int i;
+  63   1          for (i=0; i<n; i++){
+  64   2              P2=0x00;        //»´≤ø¡¡
+  65   2              delay(200);
+  66   2              clear(200);
+  67   2          }
+  68   1      }
+  69          
+  70          //µ⁄“ª∏ˆµ∆¡¡1¥Œ£¨µ⁄∂˛∏ˆ2¥Œetc°≠°≠£¨µΩµ⁄n∏ˆµ∆
+  71          void factorial_light(int n)
+  72          {
+  73   1          void delay(uint x);
+  74   1          void clear(uint time);
+  75   1          uchar init=0x80;    //1000`0000
+  76   1          int i;
+  77   1          init=~init;
+  78   1          for ( i = 1; i <= n; i++)
+  79   1          {
+  80   2              P2=init;
+  81   2              delay(200);
+  82   2              init=_cror_(init, i);
+  83   2              clear(1);
+  84   2          }
+  85   1      }
+  86          
+  87          void jiange_light(int n)
+  88          {
+  89   1          void delay(uint x);
+  90   1          void clear(uint time);
+  91   1          uchar light=0xaa;    //1010°§1010 »°∑¥ 01010101
+  92   1          int i;
+  93   1          light=~light;
+  94   1          for ( i=1; i<=n; i++){  //“™—≠ª∑¡¡√µƒ¥Œ ˝
+  95   2              P2=light;
+  96   2              delay(200);
+  97   2              P2=~light;
+  98   2              delay(200);
+  99   2          }
+ 100   1      }
+ 101          
+ 102          //Written in Hebeu Library , studying with KangKang.
+ 103          void my_light(void)
+ 104          {
+ 105   1          void MyHeart(int happyTimes);
+ 106   1          int youSeatBesideMe=1, happy=8, youLeave=1;
+ 107   1          while (youSeatBesideMe){
+ 108   2              MyHeart(happy);
+ 109   2              if (youLeave) break;
+ 110   2          }
+ 111   1      }
+ 112          
+ 113          void iWantToSpentYearsOfTimeWithYou(int years)
+ 114          {
+ 115   1          int loveYouYear, yearOfSecond;
+ 116   1          yearOfSecond=365*24*60*60;
+C51 COMPILER V9.60.0.0   0201_WATER_LIGHT                                                  12/09/2020 19:07:29 PAGE 3   
+
+ 117   1          for (loveYouYear=0; loveYouYear < years; loveYouYear++){
+ 118   2              delay(yearOfSecond);
+ 119   2          }
+ 120   1      }
+ 121          
+ 122          //nœ‘ æheartµƒ¥Œ ˝,”√8∏ˆledµ∆ ‰≥ˆ–ƒ–Œ°≠°≠–ßπ˚∫ÕŒ“œÎµƒ≤ªÃ´“ª—˘∞°
+ 123          void MyHeart(int happyTimes)
+ 124          {
+ 125   1          uchar heart[10]={
+ 126   1              0xff,   //1111`1111 œ»’˚¡Ω∏ˆ≤‚ ‘“ªœ¬,ok
+ 127   1              0x99,   //1001`1001
+ 128   1              0x66,   //0110`1110
+ 129   1              0x7e,   //0111`1110
+ 130   1              0xbd,   //1011`1101
+ 131   1              0xdb,   //1101`1011
+ 132   1              0xe7,   //1110`0111
+ 133   1              0xff,   //1111`1111
+ 134   1          };
+ 135   1      
+ 136   1          uchar *heartTimes=heart, *heartEnd=heart+happyTimes;
+ 137   1      
+ 138   1          for (; heartTimes < heartEnd; heartTimes++){
+ 139   2              P2=*heartTimes;
+ 140   2              delay(300);
+ 141   2          }
+ 142   1          iWantToSpentYearsOfTimeWithYou(10000);
+ 143   1      }
+ 144          
+ 145          uchar ll,rr;            //“ª∂®“™‘⁄Õ‚≤ø∂®“Â,≤ª»ª‘⁄main()ƒ⁄∂®“Âint¿‡ª·≥ˆ¥Ì
+ 146          int main()
+ 147          {
+ 148   1          int end=100;
+ 149   1          int i;              //i≤ªƒ‹‘⁄while—≠ª∑¿Ô√Ê∂®“Â£¨∫‹∆Êπ÷£¨±‡“Î∆˜ø…“‘ƒ‹ «º´∆‰π≈¿œµƒ∞Ê±æ
+ 150   1          ll=0xfe;            //∏¯π‹Ω≈“ª∆∏≥÷µ£¨”“±ﬂ «0æÕ «¥”◊Û±ﬂø™ º¡¡°≠°≠”–µ„∑¥»À¿‡
+ 151   1          rr=0x7f;
+ 152   1          while (end!=0)
+ 153   1          {
+ 154   2              //1
+ 155   2              move_direction('l',ll,200,8);
+ 156   2              clear(2000);
+ 157   2              //2
+ 158   2              move_direction('r',rr,200,8);
+ 159   2              clear(2000);
+ 160   2              //3
+ 161   2              move_direction('l',ll,200,8);
+ 162   2              move_direction('r',rr,200,8);
+ 163   2              clear(2000);
+ 164   2              //4
+ 165   2              for (i=1; i<=3; i++){
+ 166   3                  move_KuoSuo('k',200);
+ 167   3              }
+ 168   2              clear(2000);
+ 169   2              //5
+ 170   2              for (i=1; i<=3; i++){
+ 171   3                  move_KuoSuo('s',200);
+ 172   3              }
+ 173   2              clear(2000);
+ 174   2              //6
+ 175   2              all_light_off(3);
+ 176   2              move_direction('l',ll,200,8);
+ 177   2              clear(2000);
+ 178   2              //7
+C51 COMPILER V9.60.0.0   0201_WATER_LIGHT                                                  12/09/2020 19:07:29 PAGE 4   
+
+ 179   2              factorial_light(4);
+ 180   2              clear(2000);
+ 181   2              //8
+ 182   2              jiange_light(3);
+ 183   2              clear(2000);
+ 184   2              //9-free-my_light‘›Õ£5s
+ 185   2              my_light();
+ 186   2              clear(2000);
+ 187   2              end--;
+ 188   2          }
+ 189   1          return 0;
+ 190   1      }
+ 191          /*  ≤‚ ‘¡˜ÀÆµ∆¥˙¬Î
+ 192              for(i=0;i<8;i++){
+ 193                  P2=ll;
+ 194                  ll=_crol_(ll,1);
+ 195                  delay(200);
+ 196              }
+ 197          */
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     55    ----
-   CONSTANT SIZE    =   ----    ----
+   CODE SIZE        =    754    ----
+   CONSTANT SIZE    =     14    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =   ----    ----
+   DATA SIZE        =      2      45
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

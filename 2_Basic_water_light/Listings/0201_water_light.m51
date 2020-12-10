@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    11/22/2020  10:23:54  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    12/09/2020  19:07:29  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
@@ -12,6 +12,8 @@ MEMORY MODEL: SMALL
 INPUT MODULES INCLUDED:
   .\Objects\STARTUP.obj (?C_STARTUP)
   .\Objects\0201_water_light.obj (0201_WATER_LIGHT)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?COPY)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDPTR)
 
 
 LINK MAP OF MODULE:  .\Objects\0201_water_light (?C_STARTUP)
@@ -22,27 +24,82 @@ LINK MAP OF MODULE:  .\Objects\0201_water_light (?C_STARTUP)
 
             * * * * * * *   D A T A   M E M O R Y   * * * * * * *
             REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
-            IDATA   0008H     0001H     UNIT         ?STACK
+            DATA    0008H     001EH     UNIT         _DATA_GROUP_
+            DATA    0026H     0002H     UNIT         ?DT?0201_WATER_LIGHT
+            IDATA   0028H     0001H     UNIT         ?STACK
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
                     0003H     07FDH                  *** GAP ***
-            CODE    0800H     001EH     UNIT         ?PR?_DELAY?0201_WATER_LIGHT
-            CODE    081EH     0019H     UNIT         ?PR?MAIN?0201_WATER_LIGHT
-            CODE    0837H     000CH     UNIT         ?C_C51STARTUP
+            CODE    0800H     010FH     UNIT         ?C?LIB_CODE
+            CODE    090FH     00C1H     UNIT         ?PR?MAIN?0201_WATER_LIGHT
+            CODE    09D0H     0066H     UNIT         ?PR?_MOVE_KUOSUO?0201_WATER_LIGHT
+            CODE    0A36H     0063H     UNIT         ?PR?_MYHEART?0201_WATER_LIGHT
+            CODE    0A99H     004CH     UNIT         ?PR?_MOVE_DIRECTION?0201_WATER_LIGHT
+            CODE    0AE5H     003DH     UNIT         ?PR?_FACTORIAL_LIGHT?0201_WATER_LIGHT
+            CODE    0B22H     0033H     UNIT         ?PR?_JIANGE_LIGHT?0201_WATER_LIGHT
+            CODE    0B55H     002BH     UNIT         ?PR?_DELAY?0201_WATER_LIGHT
+            CODE    0B80H     002AH     UNIT         ?PR?_ALL_LIGHT_OFF?0201_WATER_LIGHT
+            CODE    0BAAH     0027H     UNIT         ?PR?_IWANTTOSPENTYEARSOFTIMEWITHYOU?0201_WATER_LIGHT
+            CODE    0BD1H     0026H     UNIT         ?PR?MY_LIGHT?0201_WATER_LIGHT
+            CODE    0BF7H     000EH     UNIT         ?CO?0201_WATER_LIGHT
+            CODE    0C05H     000CH     UNIT         ?C_C51STARTUP
+            CODE    0C11H     000AH     UNIT         ?PR?_CLEAR?0201_WATER_LIGHT
 
 
 
 OVERLAY MAP OF MODULE:   .\Objects\0201_water_light (?C_STARTUP)
 
 
-SEGMENT
-  +--> CALLED SEGMENT
----------------------
-?C_C51STARTUP
+SEGMENT                                            DATA_GROUP 
+  +--> CALLED SEGMENT                            START    LENGTH
+----------------------------------------------------------------
+?C_C51STARTUP                                    -----    -----
   +--> ?PR?MAIN?0201_WATER_LIGHT
 
-?PR?MAIN?0201_WATER_LIGHT
+?PR?MAIN?0201_WATER_LIGHT                        0008H    0004H
+  +--> ?PR?_MOVE_DIRECTION?0201_WATER_LIGHT
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/09/2020  19:07:29  PAGE 2
+
+
+  +--> ?PR?_CLEAR?0201_WATER_LIGHT
+  +--> ?PR?_MOVE_KUOSUO?0201_WATER_LIGHT
+  +--> ?PR?_ALL_LIGHT_OFF?0201_WATER_LIGHT
+  +--> ?PR?_FACTORIAL_LIGHT?0201_WATER_LIGHT
+  +--> ?PR?_JIANGE_LIGHT?0201_WATER_LIGHT
+  +--> ?PR?MY_LIGHT?0201_WATER_LIGHT
+
+?PR?_MOVE_DIRECTION?0201_WATER_LIGHT             000CH    0006H
+  +--> ?PR?_DELAY?0201_WATER_LIGHT
+
+?PR?_CLEAR?0201_WATER_LIGHT                      -----    -----
+  +--> ?PR?_DELAY?0201_WATER_LIGHT
+
+?PR?_MOVE_KUOSUO?0201_WATER_LIGHT                000CH    0009H
+  +--> ?CO?0201_WATER_LIGHT
+  +--> ?PR?_DELAY?0201_WATER_LIGHT
+  +--> ?PR?_CLEAR?0201_WATER_LIGHT
+
+?PR?_ALL_LIGHT_OFF?0201_WATER_LIGHT              -----    -----
+  +--> ?PR?_DELAY?0201_WATER_LIGHT
+  +--> ?PR?_CLEAR?0201_WATER_LIGHT
+
+?PR?_FACTORIAL_LIGHT?0201_WATER_LIGHT            -----    -----
+  +--> ?PR?_DELAY?0201_WATER_LIGHT
+  +--> ?PR?_CLEAR?0201_WATER_LIGHT
+
+?PR?_JIANGE_LIGHT?0201_WATER_LIGHT               -----    -----
+  +--> ?PR?_DELAY?0201_WATER_LIGHT
+
+?PR?MY_LIGHT?0201_WATER_LIGHT                    000CH    0006H
+  +--> ?PR?_MYHEART?0201_WATER_LIGHT
+
+?PR?_MYHEART?0201_WATER_LIGHT                    0012H    0012H
+  +--> ?CO?0201_WATER_LIGHT
+  +--> ?PR?_DELAY?0201_WATER_LIGHT
+  +--> ?PR?_IWANTTOSPENTYEARSOFTIMEWITHYOU?0...
+
+?PR?_IWANTTOSPENTYEARSOFTIMEWITHYOU?0...         0024H    0002H
   +--> ?PR?_DELAY?0201_WATER_LIGHT
 
 
@@ -53,20 +110,20 @@ SYMBOL TABLE OF MODULE:  .\Objects\0201_water_light (?C_STARTUP)
   ----------------------------------
 
   -------         MODULE        ?C_STARTUP
-  C:0837H         SEGMENT       ?C_C51STARTUP
-  I:0008H         SEGMENT       ?STACK
+  C:0C05H         SEGMENT       ?C_C51STARTUP
+  I:0028H         SEGMENT       ?STACK
   C:0000H         PUBLIC        ?C_STARTUP
   D:00E0H         SYMBOL        ACC
   D:00F0H         SYMBOL        B
   D:0083H         SYMBOL        DPH
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/22/2020  10:23:54  PAGE 2
-
-
   D:0082H         SYMBOL        DPL
   N:0000H         SYMBOL        IBPSTACK
   N:0100H         SYMBOL        IBPSTACKTOP
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/09/2020  19:07:29  PAGE 3
+
+
   N:0080H         SYMBOL        IDATALEN
-  C:083AH         SYMBOL        IDATALOOP
+  C:0C08H         SYMBOL        IDATALOOP
   N:0000H         SYMBOL        PBPSTACK
   N:0100H         SYMBOL        PBPSTACKTOP
   N:0000H         SYMBOL        PDATALEN
@@ -75,18 +132,18 @@ SYMBOL TABLE OF MODULE:  .\Objects\0201_water_light (?C_STARTUP)
   N:0000H         SYMBOL        PPAGEENABLE
   D:00A0H         SYMBOL        PPAGE_SFR
   D:0081H         SYMBOL        SP
-  C:0837H         SYMBOL        STARTUP1
+  C:0C05H         SYMBOL        STARTUP1
   N:0000H         SYMBOL        XBPSTACK
   N:0000H         SYMBOL        XBPSTACKTOP
   N:0000H         SYMBOL        XDATALEN
   N:0000H         SYMBOL        XDATASTART
   C:0000H         LINE#         126
-  C:0837H         LINE#         133
-  C:0839H         LINE#         134
-  C:083AH         LINE#         135
-  C:083BH         LINE#         136
-  C:083DH         LINE#         185
-  C:0840H         LINE#         196
+  C:0C05H         LINE#         133
+  C:0C07H         LINE#         134
+  C:0C08H         LINE#         135
+  C:0C09H         LINE#         136
+  C:0C0BH         LINE#         185
+  C:0C0EH         LINE#         196
   -------         ENDMOD        ?C_STARTUP
 
   -------         MODULE        0201_WATER_LIGHT
@@ -94,48 +151,260 @@ SYMBOL TABLE OF MODULE:  .\Objects\0201_water_light (?C_STARTUP)
   D:0090H         PUBLIC        P1
   D:00A0H         PUBLIC        P2
   D:00B0H         PUBLIC        P3
+  C:09D0H         PUBLIC        _move_KuoSuo
+  C:0BAAH         PUBLIC        _iWantToSpentYearsOfTimeWithYou
+  C:0C15H         PUBLIC        _clear
   D:00A8H         PUBLIC        IE
-  C:0800H         PUBLIC        _delay
+  C:0B62H         PUBLIC        _delay
   D:00B8H         PUBLIC        IP
-  C:081EH         PUBLIC        main
+  C:090FH         PUBLIC        main
   D:0098H         PUBLIC        SCON
   D:0088H         PUBLIC        TCON
+  C:0AE5H         PUBLIC        _factorial_light
+  C:0A36H         PUBLIC        _MyHeart
+  C:0BF7H         SYMBOL        _?ix1000
+  C:0BFBH         SYMBOL        _?ix1001
+  C:0B80H         PUBLIC        _all_light_off
+  D:0026H         PUBLIC        ll
+  C:0AA7H         PUBLIC        _move_direction
+  C:0BD1H         PUBLIC        my_light
+  D:0027H         PUBLIC        rr
   D:00C8H         PUBLIC        T2CON
+  C:0B22H         PUBLIC        _jiange_light
   D:00D0H         PUBLIC        PSW
+  -------         PROC          L?0076
+  -------         ENDPROC       L?0076
   -------         PROC          _DELAY
   D:0006H         SYMBOL        x
   -------         DO            
   D:0006H         SYMBOL        i
   D:0004H         SYMBOL        j
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/09/2020  19:07:29  PAGE 4
+
+
   -------         ENDDO         
-  C:0800H         LINE#         12
-  C:0800H         LINE#         13
-  C:0800H         LINE#         15
-  C:0809H         LINE#         16
-  C:081DH         LINE#         17
+  C:0B62H         LINE#         12
+  C:0B62H         LINE#         13
+  C:0B62H         LINE#         15
+  C:0B6BH         LINE#         16
+  C:0B7FH         LINE#         17
   -------         ENDPROC       _DELAY
+  C:0C11H         SYMBOL        L?0073
+  -------         PROC          L?0072
+  -------         ENDPROC       L?0072
+  C:0C11H         SYMBOL        L?0073
+  -------         PROC          _CLEAR
+  D:0006H         SYMBOL        time
+  C:0C15H         LINE#         19
+  C:0C15H         LINE#         20
+  C:0C18H         LINE#         21
+  -------         ENDPROC       _CLEAR
+  C:0AA3H         SYMBOL        L?0075
+  -------         PROC          L?0074
+  -------         ENDPROC       L?0074
+  C:0AA3H         SYMBOL        L?0075
+  -------         PROC          _MOVE_DIRECTION
+  D:000CH         SYMBOL        direc
+  D:0001H         SYMBOL        a
+  D:0002H         SYMBOL        time
+  D:0010H         SYMBOL        ci
+  -------         DO            
+  D:0082H         SYMBOL        i
+  -------         ENDDO         
+  C:0AA7H         LINE#         24
+  C:0AABH         LINE#         25
+  C:0AABH         LINE#         29
+  C:0AB9H         LINE#         30
+  C:0ABBH         LINE#         31
+  C:0ACEH         LINE#         32
+  C:0ADAH         LINE#         33
+  C:0AE1H         LINE#         34
+  C:0AE4H         LINE#         35
+  -------         ENDPROC       _MOVE_DIRECTION
+  -------         PROC          _MOVE_KUOSUO
+  D:000CH         SYMBOL        direc
+  D:000DH         SYMBOL        time
+  -------         DO            
+  D:000FH         SYMBOL        i
+  D:0011H         SYMBOL        a
+  -------         ENDDO         
+  C:09D0H         LINE#         37
+  C:09D6H         LINE#         41
+  C:09E9H         LINE#         42
+  C:09EEH         LINE#         43
+  C:09F3H         LINE#         44
+  C:09F3H         LINE#         45
+  C:09F6H         LINE#         46
+  C:0A0BH         LINE#         47
+  C:0A0BH         LINE#         48
+  C:0A10H         LINE#         49
+  C:0A16H         LINE#         50
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/09/2020  19:07:29  PAGE 5
+
+
+  C:0A16H         LINE#         51
+  C:0A19H         LINE#         52
+  C:0A2AH         LINE#         53
+  C:0A2AH         LINE#         54
+  C:0A2FH         LINE#         55
+  -------         ENDPROC       _MOVE_KUOSUO
+  -------         PROC          _ALL_LIGHT_OFF
+  D:0002H         SYMBOL        n
+  -------         DO            
+  D:0082H         SYMBOL        i
+  -------         ENDDO         
+  C:0B80H         LINE#         58
+  C:0B84H         LINE#         59
+  C:0B84H         LINE#         63
+  C:0B96H         LINE#         64
+  C:0B99H         LINE#         65
+  C:0B9FH         LINE#         66
+  C:0BA6H         LINE#         67
+  C:0BA9H         LINE#         68
+  -------         ENDPROC       _ALL_LIGHT_OFF
+  -------         PROC          _FACTORIAL_LIGHT
+  D:0002H         SYMBOL        n
+  -------         DO            
+  D:0001H         SYMBOL        init
+  D:0082H         SYMBOL        i
+  -------         ENDDO         
+  C:0AE5H         LINE#         71
+  C:0AE9H         LINE#         72
+  C:0AE9H         LINE#         75
+  C:0AEBH         LINE#         77
+  C:0AEEH         LINE#         78
+  C:0B00H         LINE#         79
+  C:0B00H         LINE#         80
+  C:0B02H         LINE#         81
+  C:0B09H         LINE#         82
+  C:0B17H         LINE#         83
+  C:0B1EH         LINE#         84
+  C:0B21H         LINE#         85
+  -------         ENDPROC       _FACTORIAL_LIGHT
+  -------         PROC          _JIANGE_LIGHT
+  D:0002H         SYMBOL        n
+  -------         DO            
+  D:0001H         SYMBOL        light
+  D:0082H         SYMBOL        i
+  -------         ENDDO         
+  C:0B22H         LINE#         87
+  C:0B26H         LINE#         88
+  C:0B26H         LINE#         91
+  C:0B28H         LINE#         93
+  C:0B2BH         LINE#         94
+  C:0B3DH         LINE#         95
+  C:0B3FH         LINE#         96
+  C:0B46H         LINE#         97
+  C:0B4AH         LINE#         98
+  C:0B51H         LINE#         99
+  C:0B54H         LINE#         100
+  -------         ENDPROC       _JIANGE_LIGHT
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/09/2020  19:07:29  PAGE 6
+
+
+  -------         PROC          MY_LIGHT
+  -------         DO            
+  D:000CH         SYMBOL        youSeatBesideMe
+  D:000EH         SYMBOL        happy
+  D:0010H         SYMBOL        youLeave
+  -------         ENDDO         
+  C:0BD1H         LINE#         103
+  C:0BD1H         LINE#         104
+  C:0BD1H         LINE#         106
+  C:0BE3H         LINE#         107
+  C:0BE9H         LINE#         108
+  C:0BF0H         LINE#         109
+  C:0BF6H         LINE#         110
+  C:0BF6H         LINE#         111
+  -------         ENDPROC       MY_LIGHT
+  -------         PROC          _IWANTTOSPENTYEARSOFTIMEWITHYOU
+  D:0002H         SYMBOL        years
+  -------         DO            
+  D:0082H         SYMBOL        loveYouYear
+  D:0024H         SYMBOL        yearOfSecond
+  -------         ENDDO         
+  C:0BAAH         LINE#         113
+  C:0BAEH         LINE#         114
+  C:0BAEH         LINE#         116
+  C:0BB4H         LINE#         117
+  C:0BC6H         LINE#         118
+  C:0BCDH         LINE#         119
+  C:0BD0H         LINE#         120
+  -------         ENDPROC       _IWANTTOSPENTYEARSOFTIMEWITHYOU
+  -------         PROC          _MYHEART
+  D:0012H         SYMBOL        happyTimes
+  -------         DO            
+  D:0014H         SYMBOL        heart
+  D:001EH         SYMBOL        heartTimes
+  D:0021H         SYMBOL        heartEnd
+  -------         ENDDO         
+  C:0A36H         LINE#         123
+  C:0A3AH         LINE#         124
+  C:0A3AH         LINE#         125
+  C:0A4DH         LINE#         136
+  C:0A62H         LINE#         138
+  C:0A73H         LINE#         139
+  C:0A7EH         LINE#         140
+  C:0A85H         LINE#         141
+  C:0A92H         LINE#         142
+  -------         ENDPROC       _MYHEART
   -------         PROC          MAIN
   -------         DO            
-  D:0003H         SYMBOL        aa
+  D:0008H         SYMBOL        end
+  D:000AH         SYMBOL        i
   -------         ENDDO         
-  C:081EH         LINE#         19
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/22/2020  10:23:54  PAGE 3
+  C:090FH         LINE#         146
+  C:090FH         LINE#         147
+  C:090FH         LINE#         148
+  C:0915H         LINE#         150
+  C:0918H         LINE#         151
+  C:091BH         LINE#         152
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/09/2020  19:07:29  PAGE 7
 
 
-  C:081EH         LINE#         20
-  C:081EH         LINE#         22
-  C:0820H         LINE#         23
-  C:0820H         LINE#         24
-  C:0820H         LINE#         25
-  C:0822H         LINE#         26
-  C:0829H         LINE#         27
-  C:0835H         LINE#         28
+  C:091BH         LINE#         153
+  C:091BH         LINE#         155
+  C:091EH         LINE#         156
+  C:0921H         LINE#         158
+  C:092EH         LINE#         159
+  C:0931H         LINE#         161
+  C:093AH         LINE#         162
+  C:0947H         LINE#         163
+  C:094AH         LINE#         165
+  C:0950H         LINE#         166
+  C:0959H         LINE#         167
+  C:096CH         LINE#         168
+  C:096FH         LINE#         170
+  C:0975H         LINE#         171
+  C:097EH         LINE#         172
+  C:0991H         LINE#         173
+  C:0994H         LINE#         175
+  C:099BH         LINE#         176
+  C:099EH         LINE#         177
+  C:09A1H         LINE#         179
+  C:09A8H         LINE#         180
+  C:09ABH         LINE#         182
+  C:09B2H         LINE#         183
+  C:09B5H         LINE#         185
+  C:09B8H         LINE#         186
+  C:09BBH         LINE#         187
+  C:09C3H         LINE#         188
+  C:09CCH         LINE#         189
+  C:09CFH         LINE#         190
   -------         ENDPROC       MAIN
   -------         ENDMOD        0201_WATER_LIGHT
 
+  -------         MODULE        ?C?COPY
+  C:08D0H         PUBLIC        ?C?COPY
+  -------         ENDMOD        ?C?COPY
+
+  -------         MODULE        ?C?CLDPTR
+  C:08F6H         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
 ******************************************************************************
-* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0046H BYTE ( 3%) *
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 030FH BYTE (38%) *
 ******************************************************************************
 
-Program Size: data=9.0 xdata=0 code=70
+Program Size: data=41.0 xdata=0 code=1054
 LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
